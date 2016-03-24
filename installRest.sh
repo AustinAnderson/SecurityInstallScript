@@ -1,15 +1,19 @@
 #!/bin/bash
 if [[ "$(whoami)" != "root" ]]; then
     echo "you must be root to run, running as root... ";
-    sudo bash -c "./installAll.sh";
+    sudo bash -c "./$0";
     exit 0;
 fi;
-echo "downloading cmake..."
-wget https://cmake.org/files/v3.5/cmake-3.5.0.tar.gz
-echo "extracting cmake tar..."
-tar -xf ./cmake-3.5.0.tar.gz
-echo "installing cmake..."
-cd cmake-3.5.0
-./bootstrap
-make
-make install
+echo "downloading install files..."
+wget cs.ecs.baylor.edu/~andersonau/
+echo "extracting install files..."
+tar -xf cpInstalls.tar.gz
+for i in $(ls ./cpInstalls.tar.gz) do
+    path=$(echo $i|sed 's/~/\//g')
+    originalPath=$(pwd)
+    echo "installing files to $path ..."
+    mv $i $path;
+    cd $path;
+    tar -xf $i;
+    cd $originalPath;
+done
