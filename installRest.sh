@@ -5,7 +5,7 @@ if [[ "$(whoami)" != "root" ]]; then
     exit 0;
 fi;
 echo "downloading install files..."
-wget cs.ecs.baylor.edu/~andersonau/
+wget cs.ecs.baylor.edu/~andersonau/cpInstalls.tar.gz
 echo "extracting install files..."
 tar -xf cpInstalls.tar.gz
 for i in $(ls ./cpInstalls.tar.gz) do
