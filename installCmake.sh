@@ -1,7 +1,7 @@
 #!/bin/bash
 if [[ "$(whoami)" != "root" ]]; then
     echo "you must be root to run, running as root... ";
-    sudo bash -c "./installAll.sh";
+    sudo bash -c "./$0";
     exit 0;
 fi;
 echo "downloading cmake..."
