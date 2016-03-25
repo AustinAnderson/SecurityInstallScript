@@ -5,13 +5,16 @@ if [[ "$(whoami)" != "root" ]]; then
     exit 0;
 fi;
 echo "downloading install files..."
-wget cs.ecs.baylor.edu/~andersonau/cpInstalls.tar.gz
+#wget cs.ecs.baylor.edu/~andersonau/cpInstalls.tar.gz
 echo "extracting install files..."
-tar -xf cpInstalls.tar.gz
-for i in $(ls ./cpInstalls.tar.gz) do
+#tar -xf cpInstalls.tar.gz
+cd cpInstalls
+for i in $(ls) ;do
+
     path=$(echo $i|sed 's/~/\//g')
     originalPath=$(pwd)
     echo "installing files to $path ..."
+    mkdir $path;
     mv $i $path;
     cd $path;
     tar -xf $i;
