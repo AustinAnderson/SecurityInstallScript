@@ -4,19 +4,8 @@ if [[ "$(whoami)" != "root" ]]; then
     sudo bash -c "./$0";
     exit 0;
 fi;
-echo "downloading install files..."
-#wget cs.ecs.baylor.edu/~andersonau/cpInstalls.tar.gz
-echo "extracting install files..."
-#tar -xf cpInstalls.tar.gz
-cd cpInstalls
-for i in $(ls) ;do
-
-    path=$(echo $i|sed 's/~/\//g')
-    originalPath=$(pwd)
-    echo "installing files to $path ..."
-    mkdir $path;
-    mv $i $path;
-    cd $path;
-    tar -xf $i;
-    cd $originalPath;
-done
+apt-get install libssl-dev
+sed -i 's/vivid/wily/g' /etc/apt/sources.list
+apt-get update
+apt-get install libboost-all-dev
+exit 0;
